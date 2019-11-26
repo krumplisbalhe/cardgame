@@ -5,8 +5,9 @@ from django.contrib.auth.decorators import login_required
 from . import forms
 
 def playcards_list(request):
-  cards = Card.objects.all()
-  return render(request, 'playcards/playcards_list.html', {'cards': cards})
+  usersCards = Card.objects.all().filter(author=request.user)
+  defaultCards = Card.objects.all().filter(author=1)
+  return render(request, 'playcards/playcards_list.html', {'usersCards': usersCards, 'defaultCards': defaultCards})
 
 @login_required(login_url="/accounts/login/")
 def card_create(request):

@@ -28,7 +28,15 @@
 
 	<h1>These are the cards</h1>
   <div class="cards">
-  {% for card in cards %}
+  {% for card in usersCards %}
+    <div class="card">
+      <h2> {{ card.cardText }}</h2>
+    </div>
+  {% endfor %}
+  </div>
+
+  <div>
+  {% for card in defaultCards %}
     <div class="card">
       <h2> {{ card.cardText }}</h2>
     </div>
