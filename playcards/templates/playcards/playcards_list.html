@@ -10,10 +10,22 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles.css'%}">
 </head>
 <body>
+  {% if user.is_authenticated %}
+
   <form action="/accounts/logout/" method="post">
     {% csrf_token %}
     <button type="submit">logout</button>
   </form>
+
+  <a href="{% url 'cards:create' %}">Add new card</a>
+
+  {% else %}
+
+    <a href="{% url 'accounts:login'%}"> Login </a>
+    <a href="{% url 'accounts:signup'%}"> Signup </a>
+
+  {% endif %}
+
 	<h1>These are the cards</h1>
   <div class="cards">
   {% for card in cards %}
