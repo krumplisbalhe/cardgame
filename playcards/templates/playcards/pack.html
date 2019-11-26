@@ -6,22 +6,33 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Add card</title>
+	<title>Playcards</title>
   <link rel="stylesheet" type="text/css" href="{% static 'styles.css'%}">
 </head>
 <body>
+  {% if user.is_authenticated %}
+
   <form action="/accounts/logout/" method="post">
     {% csrf_token %}
     <button type="submit">logout</button>
   </form>
-  <h1>Add a card</h1>
-  <form action="/cards/create/" method="post">
-    {% csrf_token %}
-    <label for="cardText">Question</label>
-    <input type="hidden" name="packId" value="{{request.GET.name}}"/>
-    <input type="text" name="cardText" value="Question" />
-    <input type="submit" value="Create">
-  </form>
+
+  <a href="{% url 'cards:create' %}?name={{name}}">Add new card</a>
+
+  {% else %}
+
+    <a href="{% url 'accounts:login'%}"> Login </a>
+    <a href="{% url 'accounts:signup'%}"> Signup </a>
+
+  {% endif %}
+
+	<h1>{{ name }}</h1>
+  <div class="cards">
+  {% for card in pack %}
+    <div class="card">
+      <h2> {{ card.cardText }}</h2>
+    </div>
+  {% endfor %}
   </div>
 </body>
 </html>
