@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Add card</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css'%}">
+</head>
+<body>
+  <form action="/accounts/logout/" method="post">
+    {% csrf_token %}
+    <button type="submit">logout</button>
+  </form>
+  <h1>Add a card</h1>
+  <form action="/cards/create/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Create">
+  </form>
+  </div>
+</body>
+</html>
