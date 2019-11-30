@@ -32,10 +32,20 @@
   {% for card in ownCards %}
     <div class="card">
       <h2> {{ card.cardText }}</h2>
+
+      <form action="{% url 'cards:delete' card.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete" />
+      </form>
+
     </div>
   {% endfor %}
   </div>
 
+
+
+{% if user.is_superuser %}
+{% else %}
     <div class="cards">
   {% for card in basicPack %}
     <div class="card">
@@ -43,6 +53,7 @@
     </div>
   {% endfor %}
     </div>
+{% endif %}
 
 
 </body>

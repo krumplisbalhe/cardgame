@@ -1,11 +1,12 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 app_name = 'cards'
 
 urlpatterns = [
     # url(r'^$', views.playcards_list, name="list"),
-    url(r'^openPack/$', views.open_pack, name="openPack"),
-    url(r'^pack/$', views.pack, name="pack"),
-    url(r'^create/$', views.card_create, name="create")
+    path('openPack/', views.open_pack, name="openPack"),
+    path('pack/', views.pack, name="pack"),
+    path('create/', views.card_create, name="create"),
+    path('delete/<int:pk>/', views.card_delete, name="delete")
 ]

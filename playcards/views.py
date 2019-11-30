@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Card
 from django.contrib.auth.decorators import login_required
 from . import forms
@@ -56,3 +56,10 @@ def card_create(request):
     return redirect('cards:openPack')
   else:
     return render(request, 'playcards/card_create.html')
+
+@login_required(login_url="/accounts/login/")
+def card_delete(request, pk):
+  obj = get_object_or_404(Card, pk=pk)
+  if request.method == 'POST':
+    obj.delete()
+    return redirect('cards:openPack')
