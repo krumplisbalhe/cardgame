@@ -19,13 +19,20 @@ def pack(request):
     if 'friendship' in request.POST:
       name = 'friendship'
       pack = Card.objects.all().filter(packId=1)
+      basicPack = pack.filter(author=1)
+      ownCards = pack.filter(author=request.user)
     if 'relationship' in request.POST:
       name = 'relationship'
       pack = Card.objects.all().filter(packId=2)
+      basicPack = pack.filter(author=1)
+      ownCards = pack.filter(author=request.user)
     if 'family' in request.POST:
       name = 'family'
       pack = Card.objects.all().filter(packId=3)
-    return render(request, 'playcards/pack.html', {'pack': pack, 'name': name})
+      basicPack = pack.filter(author=1)
+      ownCards = pack.filter(author=request.user)
+    return render(request, 'playcards/pack.html', {'ownCards': ownCards, 'basicPack': basicPack, 'name': name})
+
 
 @login_required(login_url="/accounts/login/")
 def card_create(request):

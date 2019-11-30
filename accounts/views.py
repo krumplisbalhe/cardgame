@@ -12,7 +12,7 @@ def signup_view(request):
       user = form.save()
       #log user in
       login(request, user)
-      return redirect('cards:list')
+      return redirect('cards:openPack')
   else:
     form = UserCreationForm()
   return render(request, 'accounts/signup.html', {'form': form})
@@ -24,7 +24,7 @@ def login_view(request):
       #log in the user
       user = form.get_user()
       login(request, user)
-      return redirect('cards:list')
+      return redirect('cards:openPack')
   else:
     form= AuthenticationForm()
   return render(request,'accounts/login.html', {'form': form})
