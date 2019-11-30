@@ -10,11 +10,17 @@
   <title>Sign up</title>
 </head>
 <body>
-  <h1>Signup</h1>
-  <form action="/accounts/signup/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Sign up">
-  </form>
+  <div class="pageWrap">
+    <div class="header">
+
+    </div>
+    <div class="main">
+      <form class="signupForm" action="/accounts/signup/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Sign up">
+      </form>
+    </div>
+  </div>
 </body>
 </html>

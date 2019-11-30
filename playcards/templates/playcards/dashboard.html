@@ -10,27 +10,31 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles.css'%}">
 </head>
 <body>
-  {% if user.is_authenticated %}
+  <div class="pageWrap">
+    <div class="header">
 
-  <form action="/accounts/logout/" method="post">
-    {% csrf_token %}
-    <button type="submit">logout</button>
-  </form>
-  {% else %}
+      {% if user.is_authenticated %}
+      <form action="/accounts/logout/" method="post">
+        {% csrf_token %}
+        <button class="menuLink menuButton" type="submit">Log out</button>
+      </form>
+      {% else %}
+        <a class="menuLink" href="{% url 'accounts:login'%}"> Login </a>
+        <a class="menuLink" href="{% url 'accounts:signup'%}"> Signup </a>
+      {% endif %}
 
-    <a href="{% url 'accounts:login'%}"> Login </a>
-    <a href="{% url 'accounts:signup'%}"> Signup </a>
-
-  {% endif %}
-
-	<h1>These are the packs</h1>
-  <div class="cards">
-    <form action="/cards/pack/" method="post">
-      {% csrf_token %}
-      <input type="submit" name="friendship" value="Friendship pack" />
-      <input type="submit" name="relationship" value="Relationship pack" />
-      <input type="submit" name="family" value="Family pack" />
-    </form>
+    </div>
+    <div class="main dashboardMain">
+      <h1>Packs:</h1>
+      <div class="cards">
+        <form action="/cards/pack/" method="post">
+          {% csrf_token %}
+          <input class="packButton" type="submit" name="friendship" value="Friendship" />
+          <input class="packButton" type="submit" name="relationship" value="Relationship" />
+          <input class="packButton" type="submit" name="family" value="Family" />
+        </form>
+      </div>
+    </div>
   </div>
 </body>
 </html>

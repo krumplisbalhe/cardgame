@@ -10,51 +10,51 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles.css'%}">
 </head>
 <body>
-  {% if user.is_authenticated %}
+  <div class="pageWrap">
+    <div class="header">
 
-  <form action="/accounts/logout/" method="post">
-    {% csrf_token %}
-    <button type="submit">logout</button>
-  </form>
-
-  <a href="{% url 'cards:create' %}?name={{name}}">Add new card</a>
-
-  {% else %}
-
-    <a href="{% url 'accounts:login'%}"> Login </a>
-    <a href="{% url 'accounts:signup'%}"> Signup </a>
-
-  {% endif %}
-
-	<h1>{{ name }}</h1>
-
-  <div class="cards">
-  {% for card in ownCards %}
-    <div class="card">
-      <h2> {{ card.cardText }}</h2>
-
-      <form action="{% url 'cards:delete' card.pk %}" method="post">
+      {% if user.is_authenticated %}
+      <form action="/accounts/logout/" method="post">
         {% csrf_token %}
-        <input type="submit" value="Delete" />
+        <button class="menuLink menuButton" type="submit">Log out</button>
       </form>
+      {% else %}
+        <a class="menuLink" href="{% url 'accounts:login'%}"> Login </a>
+        <a class="menuLink" href="{% url 'accounts:signup'%}"> Signup </a>
+      {% endif %}
 
     </div>
-  {% endfor %}
+    <div class="main packMain">
+      <h1 class="packName">{{ name|title }}</h1>
+
+      {% if user.is_authenticated %}
+        {% csrf_token %}
+        <a class="addNewCard" href="{% url 'cards:create' %}?name={{name}}">Add new card to this pack</a>
+      {% endif %}
+    <div class="cardWrapper">
+      <div class="cards">
+        {% for card in ownCards %}
+          <div class="card">
+            <h2> {{ card.cardText }}</h2>
+            <form action="{% url 'cards:delete' card.pk %}" method="post">
+              {% csrf_token %}
+              <input class="deleteButton" type="submit" value="Delete" />
+            </form>
+          </div>
+        {% endfor %}
+      </div>
+      {% if user.is_superuser %}
+      {% else %}
+        <div class="cards">
+        {% for card in basicPack %}
+          <div class="card">
+            <h2> {{ card.cardText }}</h2>
+          </div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    </div>
   </div>
-
-
-
-{% if user.is_superuser %}
-{% else %}
-    <div class="cards">
-  {% for card in basicPack %}
-    <div class="card">
-      <h2> {{ card.cardText }}</h2>
-    </div>
-  {% endfor %}
-    </div>
-{% endif %}
-
-
+  </div>
 </body>
 </html>

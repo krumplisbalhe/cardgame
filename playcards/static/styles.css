@@ -17,6 +17,11 @@ form{
   flex-direction: column;
 }
 
+.helptext{
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
 input{
   margin-bottom: 15px;
   padding: 8px;
@@ -25,15 +30,25 @@ input{
   font-size: 20px;
 }
 
+.signupForm>input{
+  margin-bottom: 0;
+}
+
 input[type=submit]{
   cursor: pointer;
   background-color: #2F4D4B;
 }
 
 .menuLink{
-  color: black;
+  color:#59595B;
   font-size: 25px;
   padding: 10px;
+}
+
+.menuButton{
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .menuLink:hover{
@@ -60,4 +75,60 @@ input[type=submit]{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.dashboardMain{
+  flex-direction: column;
+}
+
+input[type=submit].packButton{
+  background-color: #C48D64;
+  padding: 30px;
+}
+
+input[type=submit].packButton:hover{
+  opacity: 0.8;
+}
+
+.packMain{
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0px 10px;
+  color: #8A4C37;
+}
+
+.packName, .addNewCard{
+  align-self: flex-start;
+}
+
+.addNewCard{
+  color: #2A4846;
+}
+
+.addNewCard:hover{
+  opacity: 0.8;
+}
+
+.card{
+  display: flex;
+  align-items: center;
+}
+
+.card>h2{
+  padding-right: 20px;
+}
+
+input[type=submit].deleteButton{
+  margin: 0;
+  font-size: 10px;
+  color: white;
+}
+
+input[type=submit].deleteButton:hover{
+  opacity: 0.8;
+}
+
+.cardWrapper{
+  padding-top: 50px;
+  color:#59595B;
 }
