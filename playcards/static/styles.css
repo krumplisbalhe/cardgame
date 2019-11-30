@@ -132,3 +132,11 @@ input[type=submit].deleteButton:hover{
   padding-top: 50px;
   color:#59595B;
 }
+
+.createMain{
+  flex-direction: column;
+}
+
+.create:hover{
+  opacity: 0.8;
+}

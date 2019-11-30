@@ -10,18 +10,22 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles.css'%}">
 </head>
 <body>
-  <form action="/accounts/logout/" method="post">
-    {% csrf_token %}
-    <button type="submit">logout</button>
-  </form>
-  <h1>Add a card</h1>
-  <form action="/cards/create/" method="post">
-    {% csrf_token %}
-    <label for="cardText">Question</label>
-    <input type="hidden" name="packId" value="{{request.GET.name}}"/>
-    <input type="text" name="cardText" value="Question" />
-    <input type="submit" value="Create">
-  </form>
+  <div class="pageWrap">
+    <div class="header">
+      <form action="/accounts/logout/" method="post">
+        {% csrf_token %}
+        <button class="menuLink menuButton" type="submit">Log out</button>
+      </form>
+    </div>
+    <div class="main createMain">
+      <h1>Add a card</h1>
+      <form action="/cards/create/" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="packId" value="{{request.GET.name}}"/>
+        <input type="text" name="cardText" placeholder="Question" />
+        <input class="create" type="submit" value="Create">
+      </form>
+    </div>
   </div>
 </body>
 </html>
