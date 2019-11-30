@@ -16,9 +16,6 @@
     {% csrf_token %}
     <button type="submit">logout</button>
   </form>
-
-  {% comment %} <a href="{% url 'cards:create' %}">Add new card</a> {% endcomment %}
-
   {% else %}
 
     <a href="{% url 'accounts:login'%}"> Login </a>
