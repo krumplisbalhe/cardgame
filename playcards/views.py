@@ -1,13 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Card
+from .models import Card, User
 from django.contrib.auth.decorators import login_required
 from . import forms
-
-# def playcards_list(request):
-#   usersCards = Card.objects.all().filter(author=request.user)
-#   defaultCards = Card.objects.all().filter(author=1)
-#   return render(request, 'playcards/playcards_list.html', {'usersCards': usersCards, 'defaultCards': defaultCards})
+import json
 
 @login_required(login_url="/accounts/login/")
 def open_pack(request):
@@ -63,3 +59,14 @@ def card_delete(request, pk):
   if request.method == 'POST':
     obj.delete()
     return redirect('cards:openPack')
+
+
+def get_card(request, pk):
+  if request.method == "GET":
+    try:
+      card = Card.objects.get(pk=pk)
+      print('************', vars(card))
+      response = json.dumps({'cardText': card.cardText, 'pack': card.packId, 'author': card.author_id})
+    except:
+      response = json.dumps({'Error': 'No card with this id.'})
+  return HttpResponse(response, content_type='text/json')
