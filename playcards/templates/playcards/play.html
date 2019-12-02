@@ -15,43 +15,65 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <h1>PLAY {{name}}</h1>
 
-  <div id="demo" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-    <ul class="carousel-indicators">
-      {% for card in cards %}
-        {% if forloop.first %}
-          <li data-target="#demo" data-slide-to={{ forloop.counter0 }} class="active"></li>
-        {% else %}
-          <li data-target="#demo" data-slide-to={{ forloop.counter0 }}></li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-
-  <!-- The slideshow -->
-    <div class="carousel-inner">
-      {% for card in cards %}
-        {% if forloop.first %}
-          <div class="carousel-item active">
-            <p>{{ card.cardText }}</p>
-          </div>
-        {% else %}
-          <div class="carousel-item">
-            <p>{{ card.cardText }}</p>
-          </div>
-        {% endif %}
-      {% endfor %}
+  <div class="pageWrap">
+    <div class="header">
+      {% if user.is_authenticated %}
+      <form action="/accounts/logout/" method="post" class="navFlex">
+        {% csrf_token %}
+        <button class="menuLink menuButton" type="submit"> Log out </button>
+        <a class="menuLink" href="{% url 'cards:openPack'%}"> Dashboard </a>
+      </form>
+      {% else %}
+        <a class="menuLink" href="{% url 'accounts:login'%}"> Login </a>
+        <a class="menuLink" href="{% url 'accounts:signup'%}"> Signup </a>
+      {% endif %}
     </div>
+    <div class="main">
+      <h1>PLAY {{name}}</h1>
+      <div id="demo" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          {% for card in cards %}
+            {% if forloop.first %}
+              <li data-target="#demo" data-slide-to={{ forloop.counter0 }} class="active"></li>
+            {% else %}
+              <li data-target="#demo" data-slide-to={{ forloop.counter0 }}></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
 
-  <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </a>
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          {% for card in cards %}
+            {% if forloop.first %}
+              <div class="carousel-item active">
+                <p>{{ card.cardText }}</p>
+              </div>
+            {% else %}
+              <div class="carousel-item">
+                <p>{{ card.cardText }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
 
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+    </div>
   </div>
+  <script>
+    $('.carousel').carousel({
+    interval: false,
+    keyboard: true,
+    ride: false,
+    })
+  </script>
 </body>
 </html>

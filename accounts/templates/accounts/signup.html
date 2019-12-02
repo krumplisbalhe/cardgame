@@ -12,7 +12,15 @@
 <body>
   <div class="pageWrap">
     <div class="header">
-
+      {% if user.is_authenticated %}
+      <form action="/accounts/logout/" method="post">
+        {% csrf_token %}
+        <button class="menuLink menuButton" type="submit"> Log out </button>
+      </form>
+      {% else %}
+        <a class="menuLink" href="{% url 'accounts:homepage'%}"> Home </a>
+        <a class="menuLink" href="{% url 'accounts:login'%}"> Login </a>
+      {% endif %}
     </div>
     <div class="main">
       <form class="signupForm" action="/accounts/signup/" method="post">

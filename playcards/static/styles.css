@@ -4,8 +4,9 @@ html, body{
   height: 100vh;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background-color: #EFEAE7;
-  color:#59595B;
+  background-color: whitesmoke;
+  color: black;
+  --green: #50B18A;
 }
 
 a{
@@ -20,14 +21,21 @@ form{
 .helptext{
   font-size: 15px;
   margin-bottom: 25px;
+  color: grey;
 }
 
 input{
   margin-bottom: 15px;
   padding: 8px;
-  border-radius: 5px;
   border: none;
   font-size: 20px;
+  outline: none;
+  background: none;
+  border-bottom: 2px solid black;
+}
+
+input:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0 1000px whitesmoke inset;
 }
 
 .signupForm>input{
@@ -36,11 +44,18 @@ input{
 
 input[type=submit]{
   cursor: pointer;
-  background-color: #2F4D4B;
+  background-color: var(--green);
+  border-bottom: none;
+  width: 100px;
+  align-self: center;
+}
+
+input[type=submit]:hover{
+  opacity: 0.8;
 }
 
 .menuLink{
-  color:#59595B;
+  color: black;
   font-size: 25px;
   padding: 10px;
 }
@@ -49,10 +64,11 @@ input[type=submit]{
   border: none;
   background-color: transparent;
   cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .menuLink:hover{
-  color: #844A36;
+  opacity: 0.5;
 }
 
 .pageWrap{
@@ -66,7 +82,7 @@ input[type=submit]{
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border-bottom: 3px solid #BE8760;
+  border-bottom: 3px solid var(--green);
 }
 
 .main{
@@ -82,12 +98,16 @@ input[type=submit]{
 }
 
 input[type=submit].packButton{
-  background-color: #C48D64;
-  padding: 30px;
+  background-color: transparent;
+  font-size: 25px;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  border-radius: 10px;
 }
 
 input[type=submit].packButton:hover{
-  opacity: 0.8;
+  color: var(--green);
 }
 
 .packMain{
@@ -139,4 +159,30 @@ input[type=submit].deleteButton:hover{
 
 .create:hover{
   opacity: 0.8;
+}
+
+.cards{
+  width: 80%;
+}
+
+.cardBg{
+  border: 2px black solid;
+  border-radius: 10px;
+  height: 300px;
+  display: flex;
+  width: 200px;
+}
+
+.cardBg:hover{
+  border-color: var(--green);
+}
+
+.cardsForm{
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.navFlex{
+  display: flex;
+  flex-direction: row;
 }

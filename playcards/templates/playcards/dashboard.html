@@ -25,13 +25,18 @@
 
     </div>
     <div class="main dashboardMain">
-      <h1>Packs:</h1>
       <div class="cards">
-        <form action="/cards/pack/" method="post">
+        <form action="/cards/pack/" method="post" class="cardsForm">
           {% csrf_token %}
-          <input class="packButton" type="submit" name="friendship" value="Friendship" />
-          <input class="packButton" type="submit" name="relationship" value="Relationship" />
+          <div class="cardBg">
+            <input class="packButton" type="submit" name="friendship" value="Friendship" />
+          </div>
+          <div class="cardBg">
+            <input class="packButton" type="submit" name="relationship" value="Relationship" />
+          </div>
+          <div class="cardBg">
           <input class="packButton" type="submit" name="family" value="Family" />
+          </div>
         </form>
       </div>
     </div>

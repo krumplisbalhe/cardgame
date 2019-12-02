@@ -6,7 +6,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^cards/', include('playcards.urls')),
-    url(r'^$', views.homepage),
     url(r'^accounts/', include('accounts.urls'))
 ]
 

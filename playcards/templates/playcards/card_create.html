@@ -12,10 +12,16 @@
 <body>
   <div class="pageWrap">
     <div class="header">
-      <form action="/accounts/logout/" method="post">
+      {% if user.is_authenticated %}
+      <form action="/accounts/logout/" method="post" class="navFlex">
         {% csrf_token %}
         <button class="menuLink menuButton" type="submit">Log out</button>
+        <a class="menuLink" href="{% url 'cards:openPack'%}"> Dashboard </a>
       </form>
+      {% else %}
+        <a class="menuLink" href="{% url 'accounts:login'%}"> Login </a>
+        <a class="menuLink" href="{% url 'accounts:signup'%}"> Signup </a>
+      {% endif %}
     </div>
     <div class="main createMain">
       <h1>Add a card</h1>
