@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PLAY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css'%}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <h1>PLAY {{name}}</h1>
+
+  <div id="demo" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+    <ul class="carousel-indicators">
+      {% for card in cards %}
+        {% if forloop.first %}
+          <li data-target="#demo" data-slide-to={{ forloop.counter0 }} class="active"></li>
+        {% else %}
+          <li data-target="#demo" data-slide-to={{ forloop.counter0 }}></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+  <!-- The slideshow -->
+    <div class="carousel-inner">
+      {% for card in cards %}
+        {% if forloop.first %}
+          <div class="carousel-item active">
+            <p>{{ card.cardText }}</p>
+          </div>
+        {% else %}
+          <div class="carousel-item">
+            <p>{{ card.cardText }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+
+  </div>
+</body>
+</html>

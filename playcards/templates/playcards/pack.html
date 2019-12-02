@@ -54,6 +54,10 @@
         </div>
       {% endif %}
     </div>
+    {% if user.is_authenticated %}
+        {% csrf_token %}
+        <a class="playCards" href="{% url 'cards:play' %}?name={{name}}">PLAY</a>
+      {% endif %}
   </div>
   </div>
 </body>

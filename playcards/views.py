@@ -46,10 +46,6 @@ def card_create(request):
     card.cardText = request.POST['cardText']
     card.author = request.user
     card.save()
-    # if form.is_valid():
-    #   instance = form.save(commit=False)
-    #   instance.author = request.user
-    #   instance.save()
     return redirect('cards:openPack')
   else:
     return render(request, 'playcards/card_create.html')
@@ -60,6 +56,27 @@ def card_delete(request, pk):
   if request.method == 'POST':
     obj.delete()
     return redirect('cards:openPack')
+
+@login_required(login_url="/accounts/login/")
+def card_play(request):
+  if request.method == 'GET':
+    name = request.GET.get('name', '')
+    if name =='friendship':
+      pack = Card.objects.all().filter(packId=1)
+      basicPack = pack.filter(author=1)
+      ownCards = pack.filter(author=request.user)
+      cards = (basicPack | ownCards).distinct()
+    if name == 'relationship':
+      pack = Card.objects.all().filter(packId=2)
+      basicPack = pack.filter(author=1)
+      ownCards = pack.filter(author=request.user)
+      cards = (basicPack | ownCards).distinct()
+    if name == 'family':
+      pack = Card.objects.all().filter(packId=3)
+      basicPack = pack.filter(author=1)
+      ownCards = pack.filter(author=request.user)
+      cards = (basicPack | ownCards).distinct()
+    return render(request, 'playcards/play.html', {'cards': cards, 'name': name})
 
 ############## REST API ##############
 def get_card(request, pk):
@@ -77,7 +94,9 @@ def get_user(request, pk):
   if request.method == "GET":
     try:
       user = User.objects.get(pk=pk)
-      response = json.dumps({'id': user.id,'userName': user.username, 'isSuperUser': user.is_superuser})
+      cards = Card.objects.filter(author=pk)
+      data = serializers.serialize('json', list(cards), fields=('packId','cardText', 'question'))
+      response = json.dumps({'id': user.id,'userName': user.username, 'isSuperUser': user.is_superuser, 'cards': data})
     except:
       response = json.dumps({'Error': 'No user with this id.'})
   return HttpResponse(response, content_type='application/json')
