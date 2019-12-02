@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.core import serializers
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Card, User
 from django.contrib.auth.decorators import login_required
@@ -60,13 +61,32 @@ def card_delete(request, pk):
     obj.delete()
     return redirect('cards:openPack')
 
-
+############## REST API ##############
 def get_card(request, pk):
   if request.method == "GET":
     try:
       card = Card.objects.get(pk=pk)
-      print('************', vars(card))
-      response = json.dumps({'cardText': card.cardText, 'pack': card.packId, 'author': card.author_id})
+      # print('************', vars(card))
+      user = User.objects.get(pk=card.author_id)
+      response = json.dumps({'cardText': card.cardText, 'pack': card.packId, 'authorId': card.author_id, 'authorUserName': user.username})
     except:
       response = json.dumps({'Error': 'No card with this id.'})
   return HttpResponse(response, content_type='text/json')
+
+def get_user(request, pk):
+  if request.method == "GET":
+    try:
+      user = User.objects.get(pk=pk)
+      response = json.dumps({'id': user.id,'userName': user.username, 'isSuperUser': user.is_superuser})
+    except:
+      response = json.dumps({'Error': 'No user with this id.'})
+  return HttpResponse(response, content_type='application/json')
+
+def get_pack(request, pk):
+  if request.method == "GET":
+    try:
+      cards = Card.objects.filter(packId=pk).values()
+      return JsonResponse({'pack': list(cards)})
+    except:
+      response = json.dumps({'Error': 'No pack with this id.'})
+      return HttpResponse(response, content_type='application/json')

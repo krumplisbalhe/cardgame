@@ -8,5 +8,8 @@ urlpatterns = [
     path('pack/', views.pack, name="pack"),
     path('create/', views.card_create, name="create"),
     path('delete/<int:pk>/', views.card_delete, name="delete"),
-    path('API/get-card/<int:pk>/', views.get_card, name="get_card")
+    path('API/get-card/<int:pk>/', views.get_card, name="get_card"),
+    path('API/get-user/<int:pk>/', views.get_user, name="get_user"),
+    path('API/get-pack/<int:pk>/', views.get_pack, name="get_pack")
+    # path('API/get-cards/', views.get_cards, name="get_cards")
 ]
