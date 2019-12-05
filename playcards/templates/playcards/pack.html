@@ -30,7 +30,7 @@
 
       {% if user.is_authenticated %}
         {% csrf_token %}
-        <a class="addNewCard" href="{% url 'cards:create' %}?name={{name}}">Add new card to this pack</a>
+        <a class="addNewCard" href="{% url 'cards:create' %}?name={{name}}">+ Add new card to this pack</a>
       {% endif %}
     <div class="cardWrapper">
       <div class="cards">
@@ -48,7 +48,7 @@
       {% else %}
         <div class="cards">
         {% for card in basicPack %}
-          <div class="card">
+          <div class="card basicCards">
             <h2> {{ card.cardText }}</h2>
           </div>
         {% endfor %}

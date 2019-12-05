@@ -25,7 +25,7 @@
     </div>
     <div class="main createMain">
       <h1>Add a card</h1>
-      <form action="/cards/create/" method="post">
+      <form action="/cards/create/" class="createCardForm" method="post">
         {% csrf_token %}
         <input type="hidden" name="packId" value="{{request.GET.name}}"/>
         <input type="text" name="cardText" placeholder="Question" />
