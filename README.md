@@ -1,6 +1,6 @@
 # cardgame
 
-###### Django exam project
+###### Django exam project - A simple cardgame, to start deep conversations and strengthen connections between friends, family or couples.
 
 ## Folder structure
 
