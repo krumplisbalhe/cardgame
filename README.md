@@ -30,7 +30,6 @@ The app handling the files related to the game is called `playcards`.
 amqp==2.5.2   
 billiard==3.6.1.0  
 blinker==1.4  
-celery==4.3.0  
 Django==2.2.7  
 importlib-metadata==1.0.0  
 kombu==4.6.6  
