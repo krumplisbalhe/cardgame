@@ -83,3 +83,7 @@ Then, in a third window, I started the server: `./manage.py runserver`
 
 After adding a card, in the second window, we can see the worker processing our task and printing on the console.
 
+
+## Notes
+
+https://www.youtube.com/watch?v=Y4c4ickks2A
