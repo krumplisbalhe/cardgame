@@ -20,29 +20,29 @@ cardgame_project
    
 ```
 
-The main folder is the highest `cardgame_project`.
-The project folder is the `cardgame_project` on the second level.
-The app taking care of the users and authentication is in the `accounts` folder.
-The app handling the files related to the game is called `playcards`.
+The main folder is the highest `cardgame_project`.  
+The project folder is the `cardgame_project` on the second level.  
+The app taking care of the users and authentication is in the `accounts` folder.  
+The app handling the files related to the game is called `playcards`.  
 
 ## Environment
 
-amqp==2.5.2
-billiard==3.6.1.0
-blinker==1.4
-celery==4.3.0
-Django==2.2.7
-importlib-metadata==1.0.0
-kombu==4.6.6
-Kuyruk==9.2.2
-more-itertools==8.0.0
-pytz==2019.3
-sqlparse==0.3.0
-uWSGI==2.0.18
-vine==1.3.0
-zipp==0.6.0
+amqp==2.5.2   
+billiard==3.6.1.0  
+blinker==1.4  
+celery==4.3.0  
+Django==2.2.7  
+importlib-metadata==1.0.0  
+kombu==4.6.6  
+Kuyruk==9.2.2  
+more-itertools==8.0.0  
+pytz==2019.3  
+sqlparse==0.3.0  
+uWSGI==2.0.18  
+vine==1.3.0  
+zipp==0.6.0  
 
-(Note to self: The environment for this project is located: Semester2/django/environments/cardgame )
+(Note to self: The environment for this project is located: Semester2/django/environments/cardgame )  
 
 To activate the environment: `source cardgame/bin/activate`
 
@@ -60,6 +60,7 @@ I used `login_required`
 
 ## Signals
 
+In playcards/models.py, I used the `post_delete` signal, which prints on the console every time a card has been deleted.
 
 
 ## Task Queue
