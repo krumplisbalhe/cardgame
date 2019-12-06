@@ -5,6 +5,8 @@ from .models import Card, User
 from django.contrib.auth.decorators import login_required
 from . import forms
 import json
+import tasks
+
 
 @login_required(login_url="/accounts/login/")
 def open_pack(request):
@@ -30,7 +32,6 @@ def pack(request):
       ownCards = pack.filter(author=request.user)
     return render(request, 'playcards/pack.html', {'ownCards': ownCards, 'basicPack': basicPack, 'name': name})
 
-
 @login_required(login_url="/accounts/login/")
 def card_create(request):
   packIdToNumber = None
@@ -46,6 +47,7 @@ def card_create(request):
     card.cardText = request.POST['cardText']
     card.author = request.user
     card.save()
+    tasks.echo(request.POST['cardText'])
     return redirect('cards:openPack')
   else:
     return render(request, 'playcards/card_create.html')
