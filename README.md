@@ -74,7 +74,11 @@ Then, I installed RabbitMQ
 
 https://www.rabbitmq.com/install-homebrew.html
 
+Open 3 terminal windows, make sure all of them has the correct environment activated! (source xy/bin/activate)
+
 And started it in one terminal window with the command : `rabbitmq-server`
+
+(You might have to do the appending before: export PATH=$PATH:/usr/local/opt/rabbitmq/sbin)
 
 Then, in an other terminal window: `kuyruk --app tasks.kuyruk worker`
 

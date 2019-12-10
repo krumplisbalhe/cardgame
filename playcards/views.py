@@ -5,8 +5,7 @@ from .models import Card, User
 from django.contrib.auth.decorators import login_required
 from . import forms
 import json
-# import tasks
-
+import tasks
 
 @login_required(login_url="/accounts/login/")
 def open_pack(request):
@@ -47,7 +46,7 @@ def card_create(request):
     card.cardText = request.POST['cardText']
     card.author = request.user
     card.save()
-    # tasks.echo(request.POST['cardText'])
+    tasks.echo('****** This is the newly added card: ' + request.POST['cardText'])
     return redirect('cards:openPack')
   else:
     return render(request, 'playcards/card_create.html')
@@ -85,7 +84,6 @@ def get_card(request, pk):
   if request.method == "GET":
     try:
       card = Card.objects.get(pk=pk)
-      # print('************', vars(card))
       user = User.objects.get(pk=card.author_id)
       response = json.dumps({'cardText': card.cardText, 'pack': card.packId, 'authorId': card.author_id, 'authorUserName': user.username})
     except:

@@ -13,4 +13,5 @@ class Card(models.Model):
 def after_delete_post(sender, instance, **kwargs):
   print("******Someone deleted a card")
 
+
 post_delete.connect(after_delete_post, sender=Card)
