@@ -1,4 +1,4 @@
-Django==2.2.7
+Django==2.2.18
 importlib-metadata==1.0.0
 kombu==4.6.6
 Kuyruk==9.2.2
